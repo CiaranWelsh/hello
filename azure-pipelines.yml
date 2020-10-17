@@ -17,7 +17,6 @@ stages:
         displayName: Linux
         pool:
           vmImage: "ubuntu-18.04"
-
         strategy:
           matrix:
             ReleaseBuild:
@@ -26,7 +25,6 @@ stages:
             DebugBuild:
               BuildType: Debug
               CMakeArgs: -DCMAKE_BUILD_TYPE=Debug
-
         steps:
         - task: CMake@1
           inputs:
@@ -36,6 +34,10 @@ stages:
           inputs:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildLinux
+        - bash: bash build/MathTest
+
+
+
 
       - job: BuildWindows
         displayName: windows
@@ -58,6 +60,12 @@ stages:
           inputs:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: Buildwindows
+        - powershell: |
+            build/MathTest.exe
+
+
+
+
 
       - job: BuildMac      
         displayName: mac
@@ -82,3 +90,12 @@ stages:
           inputs:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildMac
+        - bash: | 
+            bash build/MathTest
+
+
+
+
+
+
+
