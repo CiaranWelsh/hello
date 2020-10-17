@@ -38,7 +38,7 @@ stages:
             pwd
             ls
             ls ./build
-            bash ./build/libMathLibrary.a
+            bash ./build/test/MathTest
 
 
 
@@ -98,7 +98,7 @@ stages:
             pwd
             ls
             ls ./build
-            bash ./build/libMathLibrary.a
+            bash bash ./build/test/MathTest
 
 
 
