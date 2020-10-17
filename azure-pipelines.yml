@@ -34,7 +34,7 @@ stages:
           displayName: ConfigureLinux
         - task: CMake@1
           inputs:
-            cmakeArgs: --build . --target install --config $(BuildType)
+            cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildLinux
 
       - job: BuildWindows
@@ -56,7 +56,7 @@ stages:
           displayName: ConfigureWindows
         - task: CMake@1
           inputs:
-            cmakeArgs: --build . --target install --config $(BuildType)
+            cmakeArgs: --build .  --config $(BuildType)
           displayName: Buildwindows
 
       - job: BuildMac      
@@ -80,5 +80,5 @@ stages:
           displayName: ConfigureMac
         - task: CMake@1
           inputs:
-            cmakeArgs: --build . --target install --config $(BuildType)
+            cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildMac
