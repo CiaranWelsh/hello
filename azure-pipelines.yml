@@ -52,7 +52,7 @@ stages:
       - job: BuildMac
         displayName: mac
         pool:
-          vmImage: "'macOS-10.15'"
+          vmImage: "macOS-10.15"
 
         strategy:
           matrix:
