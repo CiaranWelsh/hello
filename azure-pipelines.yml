@@ -65,6 +65,8 @@ stages:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: Buildwindows
         - powershell: |
+            pwd 
+            dir
             .\build\test\MathTest.exe
 
 
