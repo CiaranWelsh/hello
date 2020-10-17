@@ -38,7 +38,7 @@ stages:
             pwd
             ls
             ls ./build
-            bash ./build/test/MathTest
+            ./build/test/MathTest
 
 
 
@@ -98,7 +98,7 @@ stages:
             pwd
             ls
             ls ./build
-            bash bash ./build/test/MathTest
+            ./build/test/MathTest
 
 
 
