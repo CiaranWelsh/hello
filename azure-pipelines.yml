@@ -31,11 +31,16 @@ stages:
         - task: CMake@1
           inputs:
             cmakeArgs: $(CMakeArgs) ..
+          displayName: ConfigureLinux
+        - task: CMake@1
+          inputs:
+            cmakeArgs: --build . --target install --config $(BuildType)
+          displayName: BuildLinux
+
       - job: BuildWindows
         displayName: windows
         pool:
           vmImage: "windows-2019"
-
         strategy:
           matrix:
             ReleaseBuild:
@@ -44,12 +49,17 @@ stages:
             DebugBuild:
               BuildType: Debug
               CMakeArgs: -DCMAKE_BUILD_TYPE=Debug
-
         steps:
         - task: CMake@1
           inputs:
             cmakeArgs: $(CMakeArgs) ..
-      - job: BuildMac
+          displayName: ConfigureWindows
+        - task: CMake@1
+          inputs:
+            cmakeArgs: --build . --target install --config $(BuildType)
+          displayName: Buildwindows
+
+      - job: BuildMac      
         displayName: mac
         pool:
           vmImage: "macOS-10.15"
@@ -67,3 +77,8 @@ stages:
         - task: CMake@1
           inputs:
             cmakeArgs: $(CMakeArgs) ..
+          displayName: ConfigureMac
+        - task: CMake@1
+          inputs:
+            cmakeArgs: --build . --target install --config $(BuildType)
+          displayName: BuildMac
