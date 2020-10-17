@@ -34,7 +34,10 @@ stages:
           inputs:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildLinux
-        - bash: bash build/MathTest
+        - bash: |
+            pwd
+            ls
+            bash build/MathTest
 
 
 
