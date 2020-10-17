@@ -10,10 +10,60 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        displayName: Linux
+        pool:
+          vmImage: "ubuntu-18.04"
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-- task: CMake@1
-  inputs:
-    cmakeArgs: ..
+        strategy:
+          matrix:
+            ReleaseBuild:
+              BuildType: Release
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Release
+            DebugBuild:
+              BuildType: Debug
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Debug
+
+        steps:
+        - task: CMake@1
+          inputs:
+            cmakeArgs: $(CMakeArgs) ..
+      - job: BuildJob
+        displayName: windows
+        pool:
+          vmImage: "windows-2019"
+
+        strategy:
+          matrix:
+            ReleaseBuild:
+              BuildType: Release
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Release
+            DebugBuild:
+              BuildType: Debug
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Debug
+
+        steps:
+        - task: CMake@1
+          inputs:
+            cmakeArgs: $(CMakeArgs) ..
+      - job: BuildJob
+        displayName: mac
+        pool:
+          vmImage: "'macOS-10.15'"
+
+        strategy:
+          matrix:
+            ReleaseBuild:
+              BuildType: Release
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Release
+            DebugBuild:
+              BuildType: Debug
+              CMakeArgs: -DCMAKE_BUILD_TYPE=Debug
+
+        steps:
+        - task: CMake@1
+          inputs:
+            cmakeArgs: $(CMakeArgs) ..
