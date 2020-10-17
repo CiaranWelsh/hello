@@ -37,7 +37,8 @@ stages:
         - bash: |
             pwd
             ls
-            bash build/MathTest
+            ls ./build
+            bash ./build/MathTest
 
 
 
