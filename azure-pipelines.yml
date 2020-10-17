@@ -38,7 +38,7 @@ stages:
             pwd
             ls
             ls ./build
-            bash ./build/MathTest
+            bash ./build/libMathLibrary.a
 
 
 
@@ -94,9 +94,11 @@ stages:
           inputs:
             cmakeArgs: --build .  --config $(BuildType)
           displayName: BuildMac
-        - bash: | 
-            bash build/MathTest
-
+        - bash: |
+            pwd
+            ls
+            ls ./build
+            bash ./build/libMathLibrary.a
 
 
 
